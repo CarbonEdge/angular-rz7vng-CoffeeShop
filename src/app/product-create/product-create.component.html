@@ -1,25 +1,25 @@
 <h2>Create a coffee</h2>
 
 <form #productForm="ngForm" (ngSubmit)="onSubmit()">
-    <label>
-      Name:
-      <input class="marginInput" type="text" name="name" [(ngModel)]="product.name" required>
-    </label>
+  <label class="form-label">
+    Name:
+    <input class="form-input" type="text" name="name" [(ngModel)]="product.name" required>
+  </label>
   
-    <label>
-      Price:
-      <input class="marginInput" type="" name="price" [(ngModel)]="product.price" required>
-    </label>
+  <label class="form-label">
+    Price:
+    <input class="form-input" type="number" name="price" [(ngModel)]="product.price" required>
+  </label>
   
-    <label>
-      Description:
-      <textarea class="marginInput" name="description" [(ngModel)]="product.description" required></textarea>
-    </label>
+  <label class="form-label">
+    Description:
+    <textarea class="form-input" name="description" [(ngModel)]="product.description" required></textarea>
+  </label>
   
-    <label>
-      Points:
-      <input disabled class="marginInput" type="number" name="points" [(ngModel)]="product.points" required>
-    </label>
+  <label class="form-label">
+    Points:
+    <input class="form-input" disabled type="number" name="points" [(ngModel)]="product.points" required>
+  </label>  
   
     <button type="submit" [disabled]="productForm.invalid">Add new Product</button>
   </form>
