@@ -18,7 +18,7 @@
   
     <label>
       Points:
-      <input class="marginInput" type="number" name="points" [(ngModel)]="product.points" required>
+      <input disabled class="marginInput" type="number" name="points" [(ngModel)]="product.points" required>
     </label>
   
     <button type="submit" [disabled]="productForm.invalid">Add new Product</button>

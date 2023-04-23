@@ -17,28 +17,37 @@ export class CheckoutComponent {
   total = 0;
   points = 0;
   clientName = "";
-  purchases: Purchase[] = purchases;
 
 
   hasPurchases = purchases.length > 0;
 
   ngOnInit() {
-    this.sales = purchases;
     this.total = purchases.reduce((sum, purchase) => sum + purchase.price, 0);
     this.points = purchases.reduce((sum, purchase) => sum + purchase.points, 0);
   }
 
+  addCustomer(name: string, points: number) {
+    // Search for an existing customer by name
+    const existingCustomer = users.find(customer => customer.name === name);
+    if (existingCustomer) {
+      // Update the existing customer's points
+      existingCustomer.points += points;
+    } else {
+      // Add a new customer to the array
+      const client: User = {
+        id: Math.floor(Math.random() * 1000), // generate a random ID
+        name: this.clientName,
+        points: this.points
+      };
+  
+      users.push(client);
+    }
+  }
+  
+
   onSubmit(){
 
-
-    const client: User = {
-      id: Math.floor(Math.random() * 1000), // generate a random ID
-      name: this.clientName,
-      points: this.points
-    };
-
-    users.push(client);
-
+    this.addCustomer(this.clientName, this.points);
 
     this.router.navigate(['userpoints']);
   }

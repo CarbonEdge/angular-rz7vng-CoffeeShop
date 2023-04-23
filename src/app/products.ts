@@ -13,14 +13,14 @@ export const products = [
     name: 'Americano',
     price: 799,
     description: 'Black coffee with water',
-    points: 10
+    points: 0.1
   },
   {
     id: 2,
     name: 'Expresso',
     price: 699,
     description: 'Coffee',
-    points: 10
+    points: 0.1
 
   },
   {
@@ -28,7 +28,7 @@ export const products = [
     name: 'Latte',
     price: 299,
     description: 'Milk with coffee',
-    points: 10
+    points: 0.1
   }
 ];
 

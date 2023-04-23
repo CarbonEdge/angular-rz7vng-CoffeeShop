@@ -13,7 +13,7 @@ export class ProductCreateComponent {
     name: '',
     price: 0,
     description: '',
-    points: 10
+    points: 0.1
   };
 
   onSubmit() {
@@ -25,7 +25,7 @@ export class ProductCreateComponent {
       name: '',
       price: 0,
       description: '',
-      points: 10
+      points: 0.1
     };
   }
 

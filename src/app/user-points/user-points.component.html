@@ -13,6 +13,9 @@
         <td>{{ customer.id }}</td>
         <td>{{ customer.name }}</td>
         <td>{{ customer.points }}</td>
+        <td>
+          <button (click)="checkEligibility(customer)">Check eligibility</button>
+        </td>
       </tr>
     </tbody>
   </table>
