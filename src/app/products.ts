@@ -3,6 +3,8 @@ export interface Product {
   name: string;
   price: number;
   description: string;
+  points: number;
+
 }
 
 export const products = [
@@ -10,19 +12,23 @@ export const products = [
     id: 1,
     name: 'Americano',
     price: 799,
-    description: 'Black coffee with water'
+    description: 'Black coffee with water',
+    points: 10
   },
   {
     id: 2,
     name: 'Expresso',
     price: 699,
-    description: 'Coffee'
+    description: 'Coffee',
+    points: 10
+
   },
   {
     id: 3,
     name: 'Latte',
     price: 299,
-    description: 'Milk with coffee'
+    description: 'Milk with coffee',
+    points: 10
   }
 ];
 
