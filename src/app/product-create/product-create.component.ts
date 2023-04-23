@@ -17,9 +17,6 @@ export class ProductCreateComponent {
   };
 
   onSubmit() {
-    // add the new product to your data store
-    console.log(this.product);
-
     products.push(this.product);
 
     // reset the form

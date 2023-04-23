@@ -1,0 +1,19 @@
+.customers-table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .customers-table th, .customers-table td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  @media (max-width: 768px) {
+    .customers-table th, .customers-table td {
+      padding: 4px;
+    }
+  }
+  

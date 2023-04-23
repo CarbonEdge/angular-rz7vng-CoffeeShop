@@ -8,3 +8,5 @@ export interface Purchase {
   export const purchases : Purchase [] = [
 
   ];
+
+  

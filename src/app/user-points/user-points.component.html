@@ -1,1 +1,18 @@
-<p>user-points works!</p>
+<h2>user points</h2>
+
+<table class="customers-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.points }}</td>
+      </tr>
+    </tbody>
+  </table>
