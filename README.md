@@ -1,3 +1,9 @@
 # angular-rz7vng-CoffeeShop
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-rz7vng-qhh4b6)
+Simple Angular App
+
+#To Setup
+    run npm install
+
+#To run
+    use npm start
