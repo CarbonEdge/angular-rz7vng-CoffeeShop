@@ -4,7 +4,3 @@ export interface Purchase {
     price: number;
     points: number;
   }
-
-  export const purchases : Purchase [] = [
-
-  ];

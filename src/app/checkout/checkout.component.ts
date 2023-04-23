@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Purchase, purchases } from '../purchases';
+import { Purchase } from '../purchases';
 import { Router } from '@angular/router';
 import { User, users } from '../users';
+import { PurchaseServiceService } from '../purchase-service.service';
 
 @Component({
   selector: 'app-checkout',
@@ -11,19 +12,19 @@ import { User, users } from '../users';
 
 export class CheckoutComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private purchaseService: PurchaseServiceService) { }
 
-  sales = purchases;
+  sales = this.purchaseService.returnPurchases();
   total = 0;
   points = 0;
   clientName = "";
 
 
-  hasPurchases = purchases.length > 0;
+  hasPurchases = this.purchaseService.returnPurchases().length > 0;
 
   ngOnInit() {
-    this.total = purchases.reduce((sum, purchase) => sum + purchase.price, 0);
-    this.points = purchases.reduce((sum, purchase) => sum + purchase.points, 0);
+    this.total = this.purchaseService.returnPurchases().reduce((sum, purchase) => sum + purchase.price, 0);
+    this.points = this.purchaseService.returnPurchases().reduce((sum, purchase) => sum + purchase.points, 0);
   }
 
   addCustomer(name: string, points: number) {
@@ -48,6 +49,8 @@ export class CheckoutComponent {
   onSubmit(){
 
     this.addCustomer(this.clientName, this.points);
+
+    this.purchaseService.clearPurchases();
 
     this.router.navigate(['userpoints']);
   }

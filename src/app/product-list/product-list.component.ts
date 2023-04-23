@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Product, products } from '../products';
-import { Purchase, purchases } from '../purchases';
+import { PurchaseServiceService } from '../purchase-service.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,6 +9,9 @@ import { Purchase, purchases } from '../purchases';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
+
+  constructor(private purchaseService: PurchaseServiceService) { }
+
   products = products;
   total = 0;
   points = 0;
@@ -17,14 +20,7 @@ export class ProductListComponent {
 
     this.total += choice.price;
 
-    const sale: Purchase = {
-      id: choice.id,
-      client: '',
-      price: choice.price,
-      points: choice.points
-    };
-
-    purchases.push(sale);
+    this.purchaseService.addPurchase("", choice.price, choice.points);
 
   }
 }
