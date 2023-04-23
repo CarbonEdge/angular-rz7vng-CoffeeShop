@@ -10,11 +10,23 @@
 
 }
 
+.total {
+  margin-left: 42px;
+  font-style: oblique;
+}
+
+.heading{
+  display: flex;
+  flex-direction: row;
+}
+
 .flex-container {
   display: flex;
   flex-direction: column;
   }
-
+  div {
+    margin-bottom: 8px;
+  }
 /*
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that

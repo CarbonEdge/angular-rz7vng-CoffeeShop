@@ -1,0 +1,20 @@
+<h2>Checkout!</h2>
+
+<div *ngIf="hasPurchases; else noPurchases">
+    <div class="heading">
+        <h2 class="total">Total: {{ total | currency:'ZAR':'symbol':'1.2-2' }}</h2>
+        <h2 style="margin-left: 16px;">Points: {{points}}</h2>
+    </div>
+
+    <form #checkoutForm="ngForm" (ngSubmit)="onSubmit()">
+        <label>
+          Name:
+          <input type="text" name="name" [(ngModel)]="clientName" required>
+        </label>
+        <button type="submit" [disabled]="checkoutForm.invalid">Complete sale</button>
+      </form>
+</div>
+
+<ng-template #noPurchases>
+    <h1>You haven't purchased anything yet.</h1>
+</ng-template>

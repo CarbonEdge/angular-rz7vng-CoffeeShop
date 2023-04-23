@@ -1,5 +1,7 @@
-<h2>Coffee</h2>
-
+<div class="heading">
+  <h2>Coffee</h2>
+  <h2 class="total">Total: {{ total | currency:'ZAR':'symbol':'1.2-2' }}</h2>
+</div>
 <div class="flex-container">
   <div class="productBox flex-container" *ngFor="let product of products">
 
@@ -9,11 +11,13 @@
       </a>
     </h3>
   
-    <p *ngIf="product.description">
+    <div *ngIf="product.description">
       Description: {{ product.description }}
-    </p>
+    </div>
+    <div>Price: {{ product.price }}</div>
+    <div>Points: {{ product.points }}</div>
   
-    <button type="button" (click)="buy()">
+    <button type="button" (click)="buy(product)">
       Buy
     </button>
   

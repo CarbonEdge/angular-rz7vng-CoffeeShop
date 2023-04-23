@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { products } from '../products';
+import { Product, products } from '../products';
+import { Purchase, purchases } from '../purchases';
 
 @Component({
   selector: 'app-product-list',
@@ -9,9 +10,22 @@ import { products } from '../products';
 })
 export class ProductListComponent {
   products = products;
+  total = 0;
+  points = 0;
 
-  buy() {
-    window.alert('The product has been shared!');
+  buy(choice: Product) {
+
+    this.total += choice.price;
+
+    const sale: Purchase = {
+      id: choice.id,
+      client: '',
+      price: choice.price,
+      points: choice.points
+    };
+
+    purchases.push(sale);
+
   }
 }
 

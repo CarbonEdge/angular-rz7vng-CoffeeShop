@@ -9,6 +9,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { UserPointsComponent } from './user-points/user-points.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,8 @@ import { UserPointsComponent } from './user-points/user-points.component';
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
       { path: 'products', component: ProductCreateComponent },
+      { path: 'checkout', component: CheckoutComponent },
+      { path: 'userpoints', component: UserPointsComponent },
 
     ])
   ],
@@ -26,7 +29,8 @@ import { UserPointsComponent } from './user-points/user-points.component';
     TopBarComponent,
     ProductListComponent,
     ProductCreateComponent,
-    UserPointsComponent
+    UserPointsComponent,
+    CheckoutComponent
   ],
   bootstrap: [
     AppComponent
