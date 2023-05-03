@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Product, products } from '../products';
+import { Product } from '../products';
+import { DataRequestService } from '../shared/data-request.service';
 
 @Component({
   selector: 'app-product-create',
@@ -8,8 +9,10 @@ import { Product, products } from '../products';
 })
 export class ProductCreateComponent {
 
+  constructor(private dataRequestService: DataRequestService) { }
+
   product: Product = {
-    id: Math.floor(Math.random() * 1000), // generate a random ID
+    id: 0, // generate a random ID
     name: '',
     price: 0,
     description: '',
@@ -17,16 +20,19 @@ export class ProductCreateComponent {
   };
 
   onSubmit() {
-    products.push(this.product);
 
-    // reset the form
-    this.product = {
-      id: Math.floor(Math.random() * 1000),
-      name: '',
-      price: 0,
-      description: '',
-      points: 0.1
-    };
+    this.dataRequestService.createProduct(this.product).subscribe((data: any) => {
+      // reset the form
+      this.product = {
+        id: 0,
+        name: '',
+        price: 0,
+        description: '',
+        points: 0.1
+      };
+
+    });
+
   }
 
 }

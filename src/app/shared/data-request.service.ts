@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_URLS } from './constants';
 import { User } from '../users';
+import { Product } from '../products';
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +42,18 @@ export class DataRequestService {
     return this.http.post(url, user, { headers });
   }
   
+  public getProducts(): Observable<any> {
+    const url = `${API_URLS.getProducts}?pagination=10`;
+    const headers = { 'Accept': 'text/plain' };
+    return this.http.get<any>(url, { headers });
+  }
+
+  public createProduct(product: Product): Observable<any> {
+    const url = `${API_URLS.createProduct}`;
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(url, product, { headers });
+  }
 }

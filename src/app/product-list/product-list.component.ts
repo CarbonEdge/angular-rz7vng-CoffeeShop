@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
-import { Product, products } from '../products';
+import { Product } from '../products';
 import { PurchaseServiceService } from '../purchase-service.service';
+import { DataRequestService } from '../shared/data-request.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,11 +11,19 @@ import { PurchaseServiceService } from '../purchase-service.service';
 })
 export class ProductListComponent {
 
-  constructor(private purchaseService: PurchaseServiceService) { }
+  constructor(private purchaseService: PurchaseServiceService, private dataRequestService: DataRequestService) { 
+    this.setupDefaultProducts();
+  }
 
-  products = products;
+  products = null;
   total = 0;
   points = 0;
+
+  setupDefaultProducts(){
+    this.dataRequestService.getProducts().subscribe((data: any) => {
+      this.products = data.products;
+    });
+  }
 
   buy(choice: Product) {
 

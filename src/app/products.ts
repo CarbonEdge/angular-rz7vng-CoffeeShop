@@ -7,31 +7,6 @@ export interface Product {
 
 }
 
-export const products = [
-  {
-    id: 1,
-    name: 'Americano',
-    price: 799,
-    description: 'Black coffee with water',
-    points: 0.1
-  },
-  {
-    id: 2,
-    name: 'Expresso',
-    price: 699,
-    description: 'Coffee',
-    points: 0.1
-
-  },
-  {
-    id: 3,
-    name: 'Latte',
-    price: 299,
-    description: 'Milk with coffee',
-    points: 0.1
-  }
-];
-
 
 /*
 Copyright Google LLC. All Rights Reserved.
