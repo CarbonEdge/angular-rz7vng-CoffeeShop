@@ -41,9 +41,7 @@ export class CheckoutComponent {
         };
     
         await this.dataRequestService.updateUserPoints(client).subscribe(() =>{
-          this.purchaseService.clearPurchases();
-
-          this.router.navigate(['userpoints']);
+          this.redirect();
         });
       } else {
         // Add a new customer to the array
@@ -54,14 +52,18 @@ export class CheckoutComponent {
         };
     
         await this.dataRequestService.createUser(client).subscribe(() =>{
-          this.purchaseService.clearPurchases();
-
-          this.router.navigate(['userpoints']);
+          this.redirect();
         });
       }
       
     });
 
+  }
+
+  redirect(){
+    this.purchaseService.clearPurchases();
+
+    this.router.navigate(['userpoints']);
   }
 
   onSubmit(){
