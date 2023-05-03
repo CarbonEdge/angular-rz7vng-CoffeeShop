@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Purchase } from '../purchases';
 import { Router } from '@angular/router';
-import { User, users } from '../users';
+import { User } from '../users';
 import { PurchaseServiceService } from '../purchase-service.service';
+import { DataRequestService } from '../shared/data-request.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,7 +13,7 @@ import { PurchaseServiceService } from '../purchase-service.service';
 
 export class CheckoutComponent {
 
-  constructor(private router: Router, private purchaseService: PurchaseServiceService) { }
+  constructor(private router: Router, private purchaseService: PurchaseServiceService, private dataRequestService: DataRequestService) { }
 
   sales = this.purchaseService.returnPurchases();
   total = 0;
@@ -27,31 +28,44 @@ export class CheckoutComponent {
     this.points = this.purchaseService.returnPurchases().reduce((sum, purchase) => sum + purchase.points, 0);
   }
 
-  addCustomer(name: string, points: number) {
+  async addCustomer(name: string, points: number) {
     // Search for an existing customer by name
-    const existingCustomer = users.find(customer => customer.name === name);
-    if (existingCustomer) {
-      // Update the existing customer's points
-      existingCustomer.points += points;
-    } else {
-      // Add a new customer to the array
-      const client: User = {
-        id: Math.floor(Math.random() * 1000), // generate a random ID
-        name: this.clientName,
-        points: this.points
-      };
-  
-      users.push(client);
-    }
+    const clientCreate = this.dataRequestService.getUsersExists(name).subscribe(async (existingCustomer: any) => {
+      if (existingCustomer.name != null) {
+        
+        // Update the existing customer's points
+        const client: User = {
+          id: existingCustomer.id,
+          name: existingCustomer.name,
+          points: existingCustomer.points + points
+        };
+    
+        await this.dataRequestService.updateUserPoints(client).subscribe(() =>{
+          this.purchaseService.clearPurchases();
+
+          this.router.navigate(['userpoints']);
+        });
+      } else {
+        // Add a new customer to the array
+        const client: User = {
+          id: 0, // generate a primary key on server
+          name: this.clientName,
+          points: this.points
+        };
+    
+        await this.dataRequestService.createUser(client).subscribe(() =>{
+          this.purchaseService.clearPurchases();
+
+          this.router.navigate(['userpoints']);
+        });
+      }
+      
+    });
+
   }
-  
 
   onSubmit(){
 
     this.addCustomer(this.clientName, this.points);
-
-    this.purchaseService.clearPurchases();
-
-    this.router.navigate(['userpoints']);
   }
 }

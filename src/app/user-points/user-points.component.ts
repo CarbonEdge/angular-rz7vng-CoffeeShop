@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { User, users } from '../users';
+import { User } from '../users';
+import { DataRequestService } from '../shared/data-request.service';
 
 @Component({
   selector: 'app-user-points',
@@ -9,7 +10,20 @@ import { User, users } from '../users';
 
 export class UserPointsComponent {
 
-  customers = users;
+  constructor(private dataRequestService: DataRequestService) {
+
+    this.createDefaultUser();
+
+   }
+
+   customers = null;
+
+   private createDefaultUser(): void {
+
+    this.dataRequestService.getUsers().subscribe((data: any) => {
+      this.customers = data;
+    });
+  }
 
   checkEligibility(customer: User) {
     if (customer.points >= 10) {
