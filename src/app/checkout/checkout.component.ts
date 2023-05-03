@@ -30,7 +30,7 @@ export class CheckoutComponent {
 
   async addCustomer(name: string, points: number) {
     // Search for an existing customer by name
-    const clientCreate = this.dataRequestService.getUsersExists(name).subscribe(async (existingCustomer: any) => {
+    this.dataRequestService.getUsersExists(name).subscribe(async (existingCustomer: any) => {
       if (existingCustomer.name != null) {
         
         // Update the existing customer's points
